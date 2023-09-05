@@ -4,6 +4,7 @@ A to-do list app built in Django
 ## Features
 - Add task
 - Delete task
+- Tickoff task
 - Add task description
 - Add task deadline
 - Sort by deadline
