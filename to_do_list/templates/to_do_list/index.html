@@ -14,7 +14,7 @@
     {% for task in to_do_list %}
       <li>
         <h2>
-          {{ task.name }}
+          {{ task.name }} / {{ task.id }}
         </h2>
         <dl>
           <dt>Description</dt>
@@ -22,8 +22,9 @@
           <dt>Deadline</dt>
           <dd>{{ task.deadline }}</dd>
           <dt>Completed</dt>
-          <dd>{% if task.completed %}✅{% endif %}</dd>
+          <dd>{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</dd>
         </dl>
+        <a href="{% url 'task_detail' task.id %}">Edit task</a>
       </li>
     {% endfor %}
   </ul>
