@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from .models import Task
 
 # Create your views here.
 
 def index(request):
-  return HttpResponse("Hello, world")
+	to_do_list = Task.objects.all() 
+	context = {
+		"to_do_list": to_do_list,
+	}
+	return render(request, "to_do_list/index.html", context)

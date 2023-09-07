@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+</head>
+<body>
+ <header>
+   <h1>To do list</h1> 
+ </header>
+ <main>
+  <ul>
+    {% for task in to_do_list %}
+      <li>
+        <h2>
+          {{ task.name }}
+        </h2>
+        <dl>
+          <dt>Description</dt>
+          <dd>{{ task.description }}</dd>
+          <dt>Deadline</dt>
+          <dd>{{ task.deadline }}</dd>
+          <dt>Completed</dt>
+          <dd>{% if task.completed %}✅{% endif %}</dd>
+        </dl>
+      </li>
+    {% endfor %}
+  </ul>
+ </main>
+</body>
+</html>
