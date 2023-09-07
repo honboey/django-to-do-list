@@ -1,3 +1,7 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'to_do_list/styles.css' %}">
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +14,25 @@
    <h1>To do list</h1> 
  </header>
  <main>
-  <ul>
+  <ul class="to-do-list__list">
     {% for task in to_do_list %}
-      <li>
-        <h2>
-          {{ task.name }} / {{ task.id }}
+      <li class="task">
+        <h2 class="task__heading">
+          {{ task.name }}
         </h2>
         <dl>
-          <dt>Description</dt>
-          <dd>{{ task.description }}</dd>
-          <dt>Deadline</dt>
-          <dd>{{ task.deadline }}</dd>
-          <dt>Completed</dt>
-          <dd>{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</dd>
+          <div class="task__details">
+            <dt class="task__details-heading">Description</dt>
+            <dd class="task__details-body">{{ task.description }}</dd>
+          </div>
+          <div class="task__details">
+            <dt class="task__details-heading">Deadline</dt>
+            <dd class="task__details-body">{{ task.deadline }}</dd>
+          </div>
+          <div class="task__details">
+            <dt class="task__details-heading">Completed</dt>
+            <dd class="task__details-body">{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</dd>
+          </div>
         </dl>
         <a href="{% url 'task_detail' task.id %}">Edit task</a>
       </li>

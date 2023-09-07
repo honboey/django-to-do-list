@@ -1,0 +1,31 @@
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.to-do-list__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.task__heading {
+  margin-bottom: 0;
+}
+
+.task {
+  margin-bottom: 3rem;
+}
+
+.task__details + .task__details {
+  margin-top: 1.125rem;
+}
+
+.task__details-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.task__details-body {
+  margin: 0;
+  padding: 0;
+}
