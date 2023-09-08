@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'to_do_list/styles.css' %}">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,15 +14,21 @@
  </header>
  <main>
   {% if task.description %}
-    <h2>Description</h2>
-    <p>{{ task.description }}</p>
+    <div class="task__details">
+      <h2 class="task__details-heading">Description</h2>
+      <p class="task__details-body">{{ task.description }}</p>
+    </div>
   {% endif %}
   {% if task.deadline %}
-    <h2>Deadline</h2>
-    <p>{{ task.deadline }}</p>
+    <div class="task__details">
+      <h2 class="task__details-heading">Deadline</h2>
+      <p class="task__details-body">{{ task.deadline }}</p>
+    </div>
   {% endif %}
-    <h2>Completed</h2>
-    <p>{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</p>
+  <div class="task__details">
+    <h2 class="task__details-heading">Completed</h2>
+    <p class="task__details-body">{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</p>
+  </div>
   <a href="{% url 'index' %}">Return to list</a>
  </main>
 </body>
