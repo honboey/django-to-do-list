@@ -33,6 +33,10 @@
             <dt class="task__details-heading">Completed</dt>
             <dd class="task__details-body">{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</dd>
           </div>
+          <div class="task__details">
+            <dt class="task__details-heading">Overdue?</dt>
+            <dd class="task__details-body">{{ task.is_overdue }}</dd>
+          </div>
         </dl>
         <a href="{% url 'task_detail' task.id %}">Edit task</a>
       </li>
