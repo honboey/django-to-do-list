@@ -4,7 +4,7 @@ from django.db import models
 class Task(models.Model):
 	name = models.CharField(max_length=200)
 	description = models.CharField(max_length=200)
-	deadline = models.DateTimeField()
+	deadline = models.DateField()
 	completed = models.BooleanField(default=False)
 
 	def __str__(self):
