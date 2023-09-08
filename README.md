@@ -5,8 +5,7 @@ A to-do list app built in Django
 - Add task
 - Delete task
 - Tickoff task
-- Add task description
-- Add task deadline
+- Edit task
 - Sort by deadline
 - Sort by time created
 - Sort by alpha
