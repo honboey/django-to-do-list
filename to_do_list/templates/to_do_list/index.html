@@ -14,6 +14,23 @@
    <h1>To do list</h1> 
  </header>
  <main>
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <h2>Add task</h2>
+    <label>
+      Task name
+      <input type="text" name="name">
+    </label>
+    <label>
+      Description
+      <input type="text" name="description">
+    </label>
+    <label>
+      Deadline
+      <input type="date" name="deadline">
+    </label>
+    <button>Submit</button>
+  </form>
   <ul class="to-do-list__list">
     {% for task in to_do_list_sorted_by_deadline %}
       <li class="task">

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import Task
 
@@ -6,12 +6,29 @@ from .models import Task
 
 
 def index(request):
+    # Query tasks
     to_do_list = Task.objects.all()
     to_do_list_sorted_by_deadline = Task.objects.order_by("deadline")
     context = {
         "to_do_list": to_do_list,
         "to_do_list_sorted_by_deadline": to_do_list_sorted_by_deadline,
     }
+
+    # Create a form instance with the POST data
+    if request.method == "POST":
+        new_task_name = request.POST.get("name")
+        new_task_description = request.POST.get("description")
+        new_task_deadline = request.POST.get("deadline")
+
+        # Create the new task
+        new_task = Task(
+            name=new_task_name,
+            description=new_task_description,
+            deadline=new_task_deadline,
+        )
+        new_task.save()
+        return redirect("index")
+
     return render(request, "to_do_list/index.html", context)
 
 
