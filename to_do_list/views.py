@@ -6,8 +6,10 @@ from .models import Task
 
 def index(request):
 	to_do_list = Task.objects.all() 
+	to_do_list_sorted_by_deadline = Task.objects.order_by('deadline')
 	context = {
 		"to_do_list": to_do_list,
+		"to_do_list_sorted_by_deadline": to_do_list_sorted_by_deadline,
 	}
 	return render(request, "to_do_list/index.html", context)
 

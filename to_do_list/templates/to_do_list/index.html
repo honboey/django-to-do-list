@@ -15,7 +15,7 @@
  </header>
  <main>
   <ul class="to-do-list__list">
-    {% for task in to_do_list %}
+    {% for task in to_do_list_sorted_by_deadline %}
       <li class="task">
         <h2 class="task__heading">
           {{ task.name }}
