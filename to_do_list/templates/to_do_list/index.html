@@ -44,16 +44,22 @@
           </div>
           <div class="task__details">
             <dt class="task__details-heading">Deadline</dt>
-            <dd class="task__details-body">{{ task.deadline }}</dd>
+            {% if task.deadline %}
+              <dd class="task__details-body">{{ task.deadline }}</dd>
+            {% else %}
+              <dd class="task__details-body">No deadline</dd>
+            {% endif %}
           </div>
           <div class="task__details">
             <dt class="task__details-heading">Completed</dt>
             <dd class="task__details-body">{% if task.completed %}👍🏼{% else %}👎🏼{% endif %}</dd>
           </div>
-          <div class="task__details">
-            <dt class="task__details-heading">Overdue?</dt>
-            <dd class="task__details-body">{{ task.is_overdue }}</dd>
-          </div>
+          {% if task.deadline %}
+            <div class="task__details">
+              <dt class="task__details-heading">Overdue?</dt>
+              <dd class="task__details-body">{{ task.is_overdue }}</dd>
+            </div>
+          {% endif %}
         </dl>
         <a href="{% url 'task_detail' task.id %}">Edit task</a>
       </li>
