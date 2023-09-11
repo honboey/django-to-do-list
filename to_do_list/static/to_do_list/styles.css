@@ -30,3 +30,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* Edit task */
+.edit-task-form__label {
+  display: block;
+}
+
+.edit-task-form__label + .edit-task-form__label {
+  margin-top: 1rem;
+}

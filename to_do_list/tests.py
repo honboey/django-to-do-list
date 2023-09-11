@@ -57,9 +57,7 @@ def create_task(name, description, deadline, completed):
 
 class ToDoListIndexViewTests(TestCase):
     def test_overdue_does_not_show_when_no_deadline_supplied(self):
-        task = create_task(
-            "Make dinner", "Make dinner for the family", None, False
-        )
+        task = create_task("Make dinner", "Make dinner for the family", None, False)
         response = self.client.get(reverse("index"))
         self.assertNotContains(response, "Overdue")
 

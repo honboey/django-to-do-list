@@ -32,7 +32,22 @@ def index(request):
     return render(request, "to_do_list/index.html", context)
 
 
-def task_detail(request, task_id):
+def edit_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id)
     context = {"task": task}
-    return render(request, "to_do_list/task_detail.html", context)
+
+    # Handle form
+    if request.method == "Post":
+        edit_task_name = request.POST.get("name")
+        edit_task_description = request.POST.get("description")
+        edit_task_deadline = request.POST.get("deadline")
+
+        # Change task
+        task = Task.objects.get(pk=task_id)
+        task.name = edit_task_name
+        task.description = edit_task_description
+        task.deadline = edit_task_deadline
+        task.save()
+        return redirect("index")
+
+    return render(request, "to_do_list/edit-task.html", context)

@@ -1,0 +1,35 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'to_do_list/styles.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+</head>
+<body>
+ <header>
+   <h1>{{ task }}</h1> 
+ </header>
+ <main>
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <label class="edit-task-form__label">
+      Name
+      <input type="text" name="name" placeholder="{{ task.name }}">
+    </label>
+    <label  class="edit-task-form__label">
+      Description
+      <input type="text" name="name" placeholder="{{ task.description }}">
+    </label>
+    <label  class="edit-task-form__label">
+      Deadline
+      <input type="date" name="deadline" placeholder="{{ task.deadline }}">
+    </label>
+    <button>Submit</button>
+  </form>
+  <a href="{% url 'index' %}">Return to list</a>
+ </main>
+</body>
+</html>
