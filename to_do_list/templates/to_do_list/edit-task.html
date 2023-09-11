@@ -17,15 +17,15 @@
     {% csrf_token %}
     <label class="edit-task-form__label">
       Name
-      <input type="text" name="name" placeholder="{{ task.name }}">
+      <input type="text" name="name" value="{{ task.name }}">
     </label>
     <label  class="edit-task-form__label">
       Description
-      <input type="text" name="description" placeholder="{{ task.description }}">
+      <input type="text" name="description" value="{{ task.description }}">
     </label>
     <label  class="edit-task-form__label">
       Deadline
-      <input type="date" name="deadline" placeholder="{{ task.deadline }}">
+      <input type="date" name="deadline" value="{{ task.deadline }}">
     </label>
     <button>Submit</button>
   </form>
