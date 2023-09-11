@@ -17,18 +17,21 @@ def index(request):
 
     # Create a form instance with the POST data
     if request.method == "POST":
-        new_task_name = request.POST.get("name")
-        new_task_description = request.POST.get("description")
-        new_task_deadline = request.POST.get("deadline")
+        # Add a task
+        if request.POST.get("form-id") == "add-task":
+            new_task = Task(
+                name=request.POST.get("name"),
+                description=request.POST.get("description"),
+                deadline=request.POST.get("deadline"),
+            )
+            new_task.save()
+            return redirect("index")
 
-        # Create the new task
-        new_task = Task(
-            name=new_task_name,
-            description=new_task_description,
-            deadline=new_task_deadline,
-        )
-        new_task.save()
-        return redirect("index")
+        # Delete a task
+        if request.POST.get("form-id") == "delete-task":
+            task_to_delete = Task.objects.get(pk=request.POST.get("task-id"))
+            task_to_delete.delete()
+            return redirect("index")
 
     return render(request, "to_do_list/index.html", context)
 
@@ -50,6 +53,5 @@ def edit_task(request, task_id):
         task.deadline = edit_task_deadline
         task.save()
         return HttpResponseRedirect(reverse("index"))
-
 
     return render(request, "to_do_list/edit-task.html", context)

@@ -14,9 +14,10 @@
    <h1>To do list</h1> 
  </header>
  <main>
-  <form action="{% url 'index' %}" method="post">
+  <form action="{% url 'index' %}" method="post" name="add-task">
     {% csrf_token %}
     <h2>Add task</h2>
+    <input type="hidden" name="form-id" value="add-task">
     <label>
       Task name
       <input type="text" name="name">
@@ -62,6 +63,14 @@
           {% endif %}
         </dl>
         <a href="{% url 'edit_task' task.id %}">Edit task</a>
+        <form action="{% url 'index' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="form-id" value="delete-task">
+          <input type="hidden" name="task-id" value="{{ task.id }}">
+          <button type="submit">
+            Delete
+          </button>
+        </form>
       </li>
     {% endfor %}
   </ul>

@@ -6,6 +6,13 @@ from django.urls import reverse
 from .models import Task
 
 
+# Create dummy data
+def create_task(name, description, deadline, completed):
+    return Task.objects.create(
+        name=name, description=description, deadline=deadline, completed=completed
+    )
+
+
 # Create your tests here.
 class TaskModelTests(TestCase):
     def test_task_whose_deadline_has_passed_is_marked_as_overdue(self):
@@ -34,6 +41,7 @@ class TaskModelTests(TestCase):
         Adding a task via the form adds it to the list of tasks
         """
         new_task_form_data = {
+            "form-id": "add-task",
             "name": "Eat an apple",
             "description": "Buy an apple, wash an apple, eat an apple",
             "deadline": date.today(),
@@ -47,12 +55,6 @@ class TaskModelTests(TestCase):
         response = self.client.get(response.url)
 
         self.assertContains(response, "Eat an apple")
-
-
-def create_task(name, description, deadline, completed):
-    return Task.objects.create(
-        name=name, description=description, deadline=deadline, completed=completed
-    )
 
 
 class ToDoListIndexViewTests(TestCase):
