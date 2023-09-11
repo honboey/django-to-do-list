@@ -13,7 +13,7 @@
    <h1>{{ task }}</h1> 
  </header>
  <main>
-  <form action="{% url 'index' %}" method="post">
+  <form action="" method="post">
     {% csrf_token %}
     <label class="edit-task-form__label">
       Name
@@ -21,7 +21,7 @@
     </label>
     <label  class="edit-task-form__label">
       Description
-      <input type="text" name="name" placeholder="{{ task.description }}">
+      <input type="text" name="description" placeholder="{{ task.description }}">
     </label>
     <label  class="edit-task-form__label">
       Deadline

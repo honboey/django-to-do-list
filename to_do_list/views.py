@@ -1,5 +1,6 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
-
+from django.urls import reverse
 from .models import Task
 
 # Create your views here.
@@ -37,7 +38,7 @@ def edit_task(request, task_id):
     context = {"task": task}
 
     # Handle form
-    if request.method == "Post":
+    if request.method == "POST":
         edit_task_name = request.POST.get("name")
         edit_task_description = request.POST.get("description")
         edit_task_deadline = request.POST.get("deadline")
@@ -48,6 +49,7 @@ def edit_task(request, task_id):
         task.description = edit_task_description
         task.deadline = edit_task_deadline
         task.save()
-        return redirect("index")
+        return HttpResponseRedirect(reverse("index"))
+
 
     return render(request, "to_do_list/edit-task.html", context)
