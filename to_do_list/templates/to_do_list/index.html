@@ -31,6 +31,9 @@
       <input type="date" name="deadline">
     </label>
     <button>Submit</button>
+    {% if error_message %}
+      {{ error_message }}
+    {% endif %}
   </form>
   <ul class="to-do-list__list">
     {% for task in to_do_list_sorted_by_deadline %}

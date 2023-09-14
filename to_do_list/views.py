@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -19,13 +20,20 @@ def index(request):
     if request.method == "POST":
         # Add a task
         if request.POST.get("form-id") == "add-task":
-            new_task = Task(
-                name=request.POST.get("name"),
-                description=request.POST.get("description"),
-                deadline=request.POST.get("deadline"),
-            )
-            new_task.save()
-            return redirect("index")
+            try:
+                new_task = Task(
+                    name=request.POST.get("name"),
+                    description=request.POST.get("description"),
+                    deadline=request.POST.get("deadline"),
+                )
+                if not new_task.deadline:
+                    raise(ValidationError("You suck"))
+            except(ValidationError):
+                context["error_message"] = "You did not supply a valid deadline"
+                return render(request, "to_do_list/index.html", context)
+            else:
+                new_task.save()
+                return render(request, "to_do_list/index.html", context)
 
         # Delete a task
         if request.POST.get("form-id") == "delete-task":
